@@ -9,9 +9,9 @@
 
     <string-array name="shade_values">
         <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>100</item>
+        <item>175</item>
+        <item>225</item>
     </string-array>
 
     <string-array name="pan_amount">

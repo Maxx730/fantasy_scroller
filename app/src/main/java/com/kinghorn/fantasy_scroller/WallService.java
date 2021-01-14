@@ -8,12 +8,16 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import androidx.preference.PreferenceManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class WallService extends WallpaperService {
-    private int WallWidth, WallHeight;
+    private int WallWidth, WallHeight, time = 0;
 
     @Override
     public void onCreate() {
@@ -31,11 +35,12 @@ public class WallService extends WallpaperService {
     }
 
     class WallEngine extends Engine {
-        private int framerate = 120;
+        private int framerate = 60;
         private final Handler handler = new Handler();
         private int PAN_SPEED, SHADE_AMOUNT;
+        private SharedPreferences prefs;
 
-        private ParallaxScroller bg, clouds, far, near;
+        private ParallaxScroller bg, clouds, far, near, scroller;
 
         private final Runnable WallRunnable = new Runnable() {
             @Override
@@ -45,8 +50,18 @@ public class WallService extends WallpaperService {
         };
 
         public WallEngine() {
+
             //Load preferences and elements here
-            SharedPreferences prefs  = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            this.prefs  = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        }
+
+        @Override
+        public void onVisibilityChanged(boolean visible) {
+            if(visible) {
+                SHADE_AMOUNT = Integer.parseInt(this.prefs.getString("SHADE_AMOUNT", "0"));
+                PAN_SPEED = Integer.parseInt(this.prefs.getString("PAN_SPEED", "0"));
+            }
+            super.onVisibilityChanged(visible);
         }
 
         @Override
@@ -57,6 +72,7 @@ public class WallService extends WallpaperService {
             clouds = new ParallaxScroller(R.drawable.bg_clouds, getApplicationContext(), WallHeight, 5);
             far = new ParallaxScroller(R.drawable.bg_parallax_far, getApplicationContext(), WallHeight, 8);
             near = new ParallaxScroller(R.drawable.bg_parallax_near, getApplicationContext(), WallHeight, 10);
+            scroller = new ParallaxScroller(R.drawable.scroller, getApplicationContext(), WallHeight, 10);
         }
 
         @Override
@@ -92,10 +108,12 @@ public class WallService extends WallpaperService {
                 if(canvas != null) {
                     //Erase what was on the screen
                     canvas.drawRect(0, 0, WallWidth, WallHeight, p);
-                    bg.drawScreen(canvas);
-                    clouds.drawScreen(canvas);
-                    far.drawScreen(canvas);
-                    near.drawScreen(canvas);
+                    bg.drawScreen(canvas, PAN_SPEED);
+                    clouds.drawScreen(canvas, PAN_SPEED);
+                    far.drawScreen(canvas, PAN_SPEED);
+                    near.drawScreen(canvas, PAN_SPEED);
+                    scroller.drawScreen(canvas, PAN_SPEED);
+                    drawShade(canvas);
                 }
             } finally {
                 if (canvas != null) {
@@ -113,6 +131,18 @@ public class WallService extends WallpaperService {
                 shadeP.setColor(Color.BLACK);
                 shadeP.setAlpha(SHADE_AMOUNT);
                 can.drawRect(0,0, WallWidth, WallHeight, shadeP);
+            }
+        }
+
+        private int getShadeAmount() {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH", Locale.getDefault());
+            String hour = sdf.format(new Date());
+            int value = Integer.parseInt(hour);
+
+            if (value >= 0 && value <= 12) {
+                return Math.round(200 * (1.0f - (float) value / 24.0f));
+            } else {
+                return Math.round(200 * ((float) value / 24.0f));
             }
         }
     }

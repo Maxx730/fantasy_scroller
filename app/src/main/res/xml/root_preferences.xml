@@ -14,18 +14,6 @@
             app:title="Camera Pan Speed"
             app:entries="@array/pan_amount"
             app:entryValues="@array/pan_values"/>
-
-        <ListPreference
-            app:defaultValue="1"
-            app:key="CLOUD_AMOUNT"
-            app:title="Number of Clouds"
-            app:entries="@array/cloud_amount"
-            app:entryValues="@array/cloud_values"/>
-
-        <CheckBoxPreference
-            app:defaultValue="false"
-            app:key="TRANSPARENT_CLOUDS"
-            app:title="Transparent Clouds"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
