@@ -14,6 +14,13 @@
             app:title="Camera Pan Speed"
             app:entries="@array/pan_amount"
             app:entryValues="@array/pan_values"/>
+
+        <ListPreference
+            app:defaultValue="forest"
+            app:key="THEME"
+            app:title="Theme"
+            app:entries="@array/theme_choice"
+            app:entryValues="@array/theme_value"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

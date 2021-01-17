@@ -12,12 +12,15 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import androidx.preference.PreferenceManager;
+
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class WallService extends WallpaperService {
-    private int WallWidth, WallHeight, time = 0;
+    private int WallWidth, WallHeight;
 
     @Override
     public void onCreate() {
@@ -38,9 +41,9 @@ public class WallService extends WallpaperService {
         private int framerate = 60;
         private final Handler handler = new Handler();
         private int PAN_SPEED, SHADE_AMOUNT;
+        private String THEME = "forest";
         private SharedPreferences prefs;
-
-        private ParallaxScroller bg, clouds, far, near, scroller;
+        private ArrayList<ParallaxScroller> resources;
 
         private final Runnable WallRunnable = new Runnable() {
             @Override
@@ -60,6 +63,12 @@ public class WallService extends WallpaperService {
             if(visible) {
                 SHADE_AMOUNT = Integer.parseInt(this.prefs.getString("SHADE_AMOUNT", "0"));
                 PAN_SPEED = Integer.parseInt(this.prefs.getString("PAN_SPEED", "0"));
+                String check = this.prefs.getString("THEME", "forest");
+
+                if (check != THEME) {
+                    THEME = check;
+                    resources = getThemeResources(THEME);
+                }
             }
             super.onVisibilityChanged(visible);
         }
@@ -68,11 +77,7 @@ public class WallService extends WallpaperService {
         public void onCreate(SurfaceHolder surfaceHolder) {
             super.onCreate(surfaceHolder);
 
-            bg = new ParallaxScroller(R.drawable.bg, getApplicationContext(), WallHeight, 2);
-            clouds = new ParallaxScroller(R.drawable.bg_clouds, getApplicationContext(), WallHeight, 5);
-            far = new ParallaxScroller(R.drawable.bg_parallax_far, getApplicationContext(), WallHeight, 8);
-            near = new ParallaxScroller(R.drawable.bg_parallax_near, getApplicationContext(), WallHeight, 10);
-            scroller = new ParallaxScroller(R.drawable.scroller, getApplicationContext(), WallHeight, 10);
+            resources = this.getThemeResources(THEME);
         }
 
         @Override
@@ -108,11 +113,11 @@ public class WallService extends WallpaperService {
                 if(canvas != null) {
                     //Erase what was on the screen
                     canvas.drawRect(0, 0, WallWidth, WallHeight, p);
-                    bg.drawScreen(canvas, PAN_SPEED);
-                    clouds.drawScreen(canvas, PAN_SPEED);
-                    far.drawScreen(canvas, PAN_SPEED);
-                    near.drawScreen(canvas, PAN_SPEED);
-                    scroller.drawScreen(canvas, PAN_SPEED);
+
+                    for(ParallaxScroller scroller : resources) {
+                        scroller.drawScreen(canvas, PAN_SPEED);
+                    }
+
                     drawShade(canvas);
                 }
             } finally {
@@ -144,6 +149,27 @@ public class WallService extends WallpaperService {
             } else {
                 return Math.round(200 * ((float) value / 24.0f));
             }
+        }
+
+        private ArrayList<ParallaxScroller> getThemeResources(String theme) {
+            ArrayList<ParallaxScroller> resources = new ArrayList<>();
+
+            switch(theme) {
+                case "forest":
+                    resources.add(new ParallaxScroller(R.drawable.bg, getApplicationContext(), WallHeight, 2));
+                    resources.add(new ParallaxScroller(R.drawable.bg_clouds, getApplicationContext(), WallHeight, 5));
+                    resources.add(new ParallaxScroller(R.drawable.bg_parallax_far, getApplicationContext(), WallHeight, 8));
+                    resources.add(new ParallaxScroller(R.drawable.bg_parallax_near, getApplicationContext(), WallHeight, 10));
+                    resources.add(new ParallaxScroller(R.drawable.scroller, getApplicationContext(), WallHeight, 10));
+                    break;
+                case "dungeon":
+                    resources.add(new ParallaxScroller(R.drawable.dungeon, getApplicationContext(), WallHeight, 10));
+                    break;
+                default:
+                    break;
+            }
+
+            return resources;
         }
     }
 }

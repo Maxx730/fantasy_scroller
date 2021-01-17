@@ -24,13 +24,15 @@
         <item>2</item>
     </string-array>
 
-    <string-array name="cloud_amount">
-        <item>Few</item>
-        <item>Many</item>
+    <string-array name="theme_choice">
+        <item>Forest</item>
+        <item>Dungeon</item>
+        <item>Winter</item>
     </string-array>
 
-    <string-array name="cloud_values">
-        <item>0</item>
-        <item>1</item>
+    <string-array name="theme_value">
+        <item>forest</item>
+        <item>dungeon</item>
+        <item>winter</item>
     </string-array>
 </resources>
