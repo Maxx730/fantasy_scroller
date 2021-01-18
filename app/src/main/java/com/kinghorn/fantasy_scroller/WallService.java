@@ -13,11 +13,12 @@ import android.view.SurfaceHolder;
 
 import androidx.preference.PreferenceManager;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class WallService extends WallpaperService {
-    private int WallWidth, WallHeight, time = 0;
+    private int WallWidth, WallHeight;
 
     @Override
     public void onCreate() {
@@ -35,10 +36,12 @@ public class WallService extends WallpaperService {
     }
 
     class WallEngine extends Engine {
-        private int framerate = 60;
+        private int framerate = 30, fadeValue = 255;
         private final Handler handler = new Handler();
         private int PAN_SPEED, SHADE_AMOUNT;
         private SharedPreferences prefs;
+        private boolean UPDATING = true;
+        private ArrayList<ParallaxScroller> resources;
 
         private ParallaxScroller bg, clouds, far, near, scroller;
 
@@ -60,6 +63,12 @@ public class WallService extends WallpaperService {
             if(visible) {
                 SHADE_AMOUNT = Integer.parseInt(this.prefs.getString("SHADE_AMOUNT", "0"));
                 PAN_SPEED = Integer.parseInt(this.prefs.getString("PAN_SPEED", "0"));
+                UPDATING = true;
+                resources = getResources();
+                fadeValue = 255;
+            } else {
+                resources.clear();
+                UPDATING = false;
             }
             super.onVisibilityChanged(visible);
         }
@@ -67,12 +76,7 @@ public class WallService extends WallpaperService {
         @Override
         public void onCreate(SurfaceHolder surfaceHolder) {
             super.onCreate(surfaceHolder);
-
-            bg = new ParallaxScroller(R.drawable.bg, getApplicationContext(), WallHeight, 2);
-            clouds = new ParallaxScroller(R.drawable.bg_clouds, getApplicationContext(), WallHeight, 5);
-            far = new ParallaxScroller(R.drawable.bg_parallax_far, getApplicationContext(), WallHeight, 8);
-            near = new ParallaxScroller(R.drawable.bg_parallax_near, getApplicationContext(), WallHeight, 10);
-            scroller = new ParallaxScroller(R.drawable.scroller, getApplicationContext(), WallHeight, 10);
+            resources = new ArrayList<>();
         }
 
         @Override
@@ -91,7 +95,9 @@ public class WallService extends WallpaperService {
                                      int format, int width, int height) {
             super.onSurfaceChanged(holder, format, width, height);
 
-            drawFrame();
+            if(UPDATING) {
+                drawFrame();
+            }
         }
 
         void drawFrame() {
@@ -108,11 +114,11 @@ public class WallService extends WallpaperService {
                 if(canvas != null) {
                     //Erase what was on the screen
                     canvas.drawRect(0, 0, WallWidth, WallHeight, p);
-                    bg.drawScreen(canvas, PAN_SPEED);
-                    clouds.drawScreen(canvas, PAN_SPEED);
-                    far.drawScreen(canvas, PAN_SPEED);
-                    near.drawScreen(canvas, PAN_SPEED);
-                    scroller.drawScreen(canvas, PAN_SPEED);
+
+                    for(ParallaxScroller scroller : resources) {
+                        scroller.drawScreen(canvas, PAN_SPEED);
+                    }
+
                     drawShade(canvas);
                 }
             } finally {
@@ -131,6 +137,10 @@ public class WallService extends WallpaperService {
                 shadeP.setColor(Color.BLACK);
                 shadeP.setAlpha(SHADE_AMOUNT);
                 can.drawRect(0,0, WallWidth, WallHeight, shadeP);
+
+                if (fadeValue > 0) {
+                    drawFade(can);
+                }
             }
         }
 
@@ -144,6 +154,32 @@ public class WallService extends WallpaperService {
             } else {
                 return Math.round(200 * ((float) value / 24.0f));
             }
+        }
+
+        private ArrayList<ParallaxScroller> getResources() {
+            ArrayList<ParallaxScroller> resources = new ArrayList<>();
+            //resources.add(new ParallaxScroller(R.drawable.bg, getApplicationContext(), WallHeight, 2));
+            //resources.add(new ParallaxScroller(R.drawable.bg_clouds, getApplicationContext(), WallHeight, 5));
+            //resources.add(new ParallaxScroller(R.drawable.bg_parallax_far, getApplicationContext(), WallHeight, 8));
+            //resources.add(new ParallaxScroller(R.drawable.bg_parallax_near, getApplicationContext(), WallHeight, 10));
+            resources.add(new ParallaxScroller(R.drawable.scroller, getApplicationContext(), WallHeight, 10));
+            return resources;
+        }
+
+        private void drawFade(Canvas canvas) {
+            int fadeAmount = Math.round(fadeValue / framerate);
+            fadeValue -= fadeAmount;
+
+            Paint p = new Paint();
+            p.setColor(Color.BLACK);
+            p.setStyle(Paint.Style.FILL);
+            p.setAlpha(fadeValue);
+            canvas.drawRect(0, 0, WallWidth, WallHeight, p);
+
+            Paint text = new Paint();
+            text.setColor(Color.WHITE);
+            text.setTextSize(48);
+            canvas.drawText(String.valueOf(fadeAmount), 25, 250, text);
         }
     }
 }
