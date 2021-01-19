@@ -24,7 +24,7 @@
 
         <service
             android:name="com.kinghorn.forest_wallpaper.WallService"
-            android:label="Fantasy Scroller LITE"
+            android:label="Restro Forest LITE"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />

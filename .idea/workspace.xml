@@ -36,22 +36,18 @@
   <component name="ChangeListManager">
     <list default="true" id="f43365d1-4283-4c36-aca2-ef3a05bd4fb2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/kinghorn/fantasy_scroller/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/kinghorn/forest_wallpaper/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/fantasy_scroller/ParallaxScroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/forest_wallpaper/ParallaxScroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/fantasy_scroller/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/forest_wallpaper/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/fantasy_scroller/WallService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/forest_wallpaper/WallService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/fantasy_scroller/WallSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinghorn/forest_wallpaper/WallSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/kinghorn/fantasy_scroller/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/kinghorn/forest_wallpaper/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/wall_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/wall_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[09101JEC221904]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -64,6 +60,11 @@
       </list>
     </option>
   </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../setup/forest-wallpaper-keystore.jks" />
+    <option name="KEY_ALIAS" value="publish" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -73,6 +74,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ApkExportedModule" value="pinball-wallpaper.app" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
+    <property name="ExportApk.SignV2" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -183,6 +189,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="721" y="179" width="458" height="662" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1610595251844" />
+    <state x="727" y="251" width="435" height="553" key="FileChooserDialogImpl" timestamp="1611076113999">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="727" y="251" width="435" height="553" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1611076113999" />
     <state width="936" height="311" key="GridCell.Tab.0.bottom" timestamp="1611006198498">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
