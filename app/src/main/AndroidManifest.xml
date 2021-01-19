@@ -3,7 +3,7 @@
     package="com.kinghorn.fantasy_scroller">
 
     <uses-feature
-        android:name="android.software.live_wallpaper"
+        android:name="com.kinghorn.fantasy_scroller"
         android:required="true" />
 
     <application
@@ -24,7 +24,7 @@
 
         <service
             android:name="com.kinghorn.fantasy_scroller.WallService"
-            android:label="WallService"
+            android:label="Fantasy Scroller LITE"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />

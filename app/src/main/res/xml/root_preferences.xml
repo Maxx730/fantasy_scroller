@@ -4,16 +4,26 @@
         <ListPreference
             app:defaultValue="1"
             app:key="SHADE_AMOUNT"
-            app:title="Background Shade Intensity"
+            app:title="Background Shade"
+            app:summary="Draws a shade to help icons and widgets show up."
             app:entries="@array/shade_amount"
             app:entryValues="@array/shade_values"/>
 
         <ListPreference
             app:defaultValue="1"
             app:key="PAN_SPEED"
+            app:summary="Speed the scene moves in background."
             app:title="Camera Pan Speed"
             app:entries="@array/pan_amount"
             app:entryValues="@array/pan_values"/>
+
+        <ListPreference
+            app:defaultValue="30"
+            app:key="FPS"
+            app:title="Frame Rate"
+            app:summary="High value improves appearance but can effect battery life."
+            app:entryValues="@array/fps_amount"
+            app:entries="@array/fps_values"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

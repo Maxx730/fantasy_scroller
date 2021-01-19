@@ -38,7 +38,7 @@ public class WallService extends WallpaperService {
     class WallEngine extends Engine {
         private int framerate = 30, fadeValue = 255;
         private final Handler handler = new Handler();
-        private int PAN_SPEED, SHADE_AMOUNT;
+        private int PAN_SPEED, SHADE_AMOUNT, FPS = 30;
         private SharedPreferences prefs;
         private boolean UPDATING = true;
         private ArrayList<ParallaxScroller> resources;
@@ -63,6 +63,7 @@ public class WallService extends WallpaperService {
             if(visible) {
                 SHADE_AMOUNT = Integer.parseInt(this.prefs.getString("SHADE_AMOUNT", "0"));
                 PAN_SPEED = Integer.parseInt(this.prefs.getString("PAN_SPEED", "0"));
+                FPS = Integer.parseInt(this.prefs.getString("FPS", "30"));
                 UPDATING = true;
                 resources = getResources();
                 fadeValue = 255;
@@ -128,7 +129,7 @@ public class WallService extends WallpaperService {
             }
 
             handler.removeCallbacks(WallRunnable);
-            handler.postDelayed(WallRunnable, 1000 / framerate);
+            handler.postDelayed(WallRunnable, 1000 / FPS);
         }
 
         private void drawShade(Canvas can) {
@@ -167,7 +168,7 @@ public class WallService extends WallpaperService {
         }
 
         private void drawFade(Canvas canvas) {
-            int fadeAmount = Math.round(fadeValue / framerate);
+            int fadeAmount = fadeValue / FPS;
             fadeValue -= fadeAmount;
 
             Paint p = new Paint();
@@ -175,11 +176,6 @@ public class WallService extends WallpaperService {
             p.setStyle(Paint.Style.FILL);
             p.setAlpha(fadeValue);
             canvas.drawRect(0, 0, WallWidth, WallHeight, p);
-
-            Paint text = new Paint();
-            text.setColor(Color.WHITE);
-            text.setTextSize(48);
-            canvas.drawText(String.valueOf(fadeAmount), 25, 250, text);
         }
     }
 }

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">wall-wallpaper</string>
-    <string name="ac_wall_settings">WallSettings</string>
+    <string name="app_name">Fantasy Scroller Live Wallpaper LITE</string>
+    <string name="ac_wall_settings">Fantasy Scroller Live Wallpaper</string>
 
     <!-- Preference Titles -->
     <string name="settings_header">General</string>
