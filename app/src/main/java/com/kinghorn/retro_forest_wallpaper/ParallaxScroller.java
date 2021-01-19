@@ -1,4 +1,4 @@
-package com.kinghorn.forest_wallpaper;
+package com.kinghorn.retro_forest_wallpaper;
 
 import android.content.Context;
 import android.graphics.Bitmap;

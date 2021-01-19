@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kinghorn.forest_wallpaper">
+    package="com.kinghorn.retro_forest_wallpaper">
 
     <uses-feature
-        android:name="com.kinghorn.forest_wallpaper"
+        android:name="com.kinghorn.retro_forest_wallpaper"
         android:required="true" />
 
     <application
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.kinghorn.forest_wallpaper.WallSettings"
+            android:name=".WallSettings"
             android:label="@string/ac_wall_settings">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </activity>
 
         <service
-            android:name="com.kinghorn.forest_wallpaper.WallService"
+            android:name=".WallService"
             android:label="Retro Forest LITE"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>

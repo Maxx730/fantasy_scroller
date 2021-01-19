@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.kinghorn.forest_wallpaper"
+        applicationId "com.kinghorn.retro_forest_wallpaper"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

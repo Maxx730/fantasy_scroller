@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.pinball_wallpaper",
+  "applicationId": "com.kinghorn.retro_forest_wallpaper",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 2,
-      "versionName": "1.1",
+      "versionCode": 1,
+      "versionName": "1.0",
       "enabled": true,
       "outputFile": "app-release.apk"
     }
