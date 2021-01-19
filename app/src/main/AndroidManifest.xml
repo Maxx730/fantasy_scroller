@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kinghorn.fantasy_scroller">
+    package="com.kinghorn.forest_wallpaper">
 
     <uses-feature
-        android:name="com.kinghorn.fantasy_scroller"
+        android:name="com.kinghorn.forest_wallpaper"
         android:required="true" />
 
     <application
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.kinghorn.fantasy_scroller.WallSettings"
+            android:name="com.kinghorn.forest_wallpaper.WallSettings"
             android:label="@string/ac_wall_settings">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </activity>
 
         <service
-            android:name="com.kinghorn.fantasy_scroller.WallService"
+            android:name="com.kinghorn.forest_wallpaper.WallService"
             android:label="Fantasy Scroller LITE"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>

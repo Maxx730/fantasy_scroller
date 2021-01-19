@@ -1,18 +1,11 @@
-package com.kinghorn.fantasy_scroller;
+package com.kinghorn.forest_wallpaper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.util.Log;
-
-import androidx.core.content.ContextCompat;
 
 public class ParallaxScroller {
     private int x = 0, y = 0, speed = 10;

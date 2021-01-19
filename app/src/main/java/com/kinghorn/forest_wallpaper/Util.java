@@ -1,4 +1,4 @@
-package com.kinghorn.fantasy_scroller;
+package com.kinghorn.forest_wallpaper;
 
 import android.util.Log;
 

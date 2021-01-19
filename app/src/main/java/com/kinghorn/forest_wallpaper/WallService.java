@@ -1,4 +1,4 @@
-package com.kinghorn.fantasy_scroller;
+package com.kinghorn.forest_wallpaper;
 
 import android.app.WallpaperManager;
 import android.content.SharedPreferences;
@@ -8,7 +8,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 import androidx.preference.PreferenceManager;
